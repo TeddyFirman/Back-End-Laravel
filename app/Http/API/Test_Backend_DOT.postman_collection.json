@@ -1,0 +1,449 @@
+{
+	"info": {
+		"_postman_id": "de8ab2bd-b5e9-40e3-bada-1a1ca853dd5f",
+		"name": "Test_Backend_DOT",
+		"description": "Ini adalah dokumentasi API {{ Challenge Backend Laravel }}\n\nSaya membuat API terinspirasi oleh X atau yang dulu disebut twitter, dimana di dalam API ini User dibedakan menjadi dua (admin | user).\n\nMenurut saya, saya telah menggunakan pattern MVC (Model View Controller) \\*tapi karena backend maka viewnya bentuk JSON semua. Saya memakai spatie untuk Role dan saya menamai role tersebut user dan admin.\n\nModel yang ada di RestAPI:\n\n- User\n- Post\n- Komen",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "12266282"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Dashboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{dot_indonesia}}/api/admin/dashboard",
+						"description": "End point ini, berfungsi untuk masuk ke dalam dashboard admin\n\n- User yang boleh masuk hanya role 'admin' saja\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu"
+					},
+					"response": []
+				},
+				{
+					"name": "Super",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{dot_indonesia}}/api/admin/site",
+						"description": "End point ini, berfungsi untuk melihat semua user yang ada di aplikasi ini\n\n- User yang boleh masuk hanya role 'admin' saja\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n\n\\* NB: Saya menamai Super dikarenakan nantinya admin akan leluasa menambah atau menghapus(CRD, Karena admin hanya bisa menambah dan menghapus user) user untuk aplikasi ini"
+					},
+					"response": []
+				},
+				{
+					"name": "Super - Add Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "alwaystrue",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "alwaystrue@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{dot_indonesia}}/api/admin/add-users",
+						"description": "End point ini, berfungsi untuk menambah user untuk aplikasi ini\n\n- User yang boleh masuk hanya role 'admin' saja\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu"
+					},
+					"response": []
+				},
+				{
+					"name": "Super - Delete Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{dot_indonesia}}/api/admin/delete-users/8",
+						"description": "End point ini, berfungsi untuk menghapus user di aplikasi ini\n\n- User yang boleh masuk hanya role 'admin' saja\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n- Menggunakan parameter id user untuk melakukan penghapusan"
+					},
+					"response": []
+				},
+				{
+					"name": "Super - Lihat Postingan User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{dot_indonesia}}/api/admin/lihat-postingan-user",
+						"description": "End point ini, berfungsi untuk melihat semua postingan yang ada di aplikasi ini\n\n- User yang boleh masuk hanya role 'admin' saja\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu"
+					},
+					"response": []
+				},
+				{
+					"name": "Super - Hapus Postingan Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{dot_indonesia}}/api/admin/hapus-postingan/4",
+						"description": "End point ini, berfungsi untuk menghapus postingan yang ada di aplikasi ini\n\n- User yang boleh masuk hanya role 'admin' saja\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n- Menggunakan parameter id post yang ber relasi dengan user (1 user memiliki banyak post) untuk menghapus postingan user, Jika postingan tersebut dianggap kurang patas"
+					},
+					"response": []
+				}
+			],
+			"description": "Saya membuat folder Admin untuk mengelompokkan apa-apa saja yang bisa dilakukan oleh role 'admin'"
+		},
+		{
+			"name": "T",
+			"item": [
+				{
+					"name": "Post-Postingan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "judulPost",
+									"value": "Postingan Kedua Admoon",
+									"type": "text"
+								},
+								{
+									"key": "postingan",
+									"value": "&emsp; Perintah query pada SQL mendukung pengurutan data berdasarkan kolom atau fields tertentu dengan tipe data yang dimiliki pada suatu tabel, pengurutan dapat dilakukan secara naik atau *ascending* maupun secara menurun atau *descending*, untuk melakukan pengurutan dapat menggunakan perintah sebagai berikut:\n~~~SQL:Perintah Mengurutkan Data\nSELECT * FROM Nama_Tabel ORDER BY Nama_Kolom;\n~~~\n\nPerintah di atas secara default mengurutkan data secara naik, dari nilai terkecil hingga terbesar atau dari huruf a hingga z namun, jika diperlukan dapat diurutkan secara menurut dengan menggunakan perintah sebagai berikut:\n~~~SQL:Perintah Mengurutkan Data Menurun\nSELECT * FROM Nama_Tabel ORDER BY Nama_Kolom DESC;\n~~~\n\nDengan menambahkan data kunci ``DESC`` setalah nama kolom, perintah yang dijalankan akan mengembalikan data dengan urutan secara menurun, untuk lebih mudah memahami pengurutan data diberikan contoh sebagai berikut:\n~~~SQL:Contoh\nSELECT * FROM Karyawan WHERE Nama_Depan = 'John';\n+---+-----------+---------------+-----------+--------+\n|Id\t|Nama_Depan\t|Nama_Belakang\t|Jabatan    |Gaji\t   |\n+---+-----------+---------------+-----------+--------+\n|4  |'Dandy'\t  |'Waluyo'\t\t    |HRD\t\t    |4500000 |\n|3  |'Cita'\t    |'Putri'\t\t    |CFO\t\t    |5000000 |\n|1  |'Andi'\t\t  |'Purwatan'\t\t  |CTO\t\t    |6000000 |\n|5  |'Emil'\t\t  |'Danitama'\t\t  |Co-CEO\t\t  |7000000 |\n|2  |'Budi'\t\t  |'Hartanto'\t\t  |CEO \t\t    |7500000 |\n+---+-----------+---------------+-----------+--------+\n5 rows in set (0.001 sec) \n~~~\nContoh di atas adalah perintah mengurutkan data pada tabel ``Karyawan`` berdasarkan kolom ``Gaji`` yang secara *default* mengurutkan baris mulai dari gaji terendah hingga gaji tertinggi .",
+									"type": "text"
+								},
+								{
+									"key": "pembuat_post",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{dot_indonesia}}/api/buat-postingan",
+						"description": "End point ini, berfungsi untuk membuat postingan dari user yang sudah login di aplikasi ini, dan ini menggunakan relasi One to Many yaitu 1 user memiliki banyak post\n\n- User yang boleh masuk memiliki role 'user | admin' saja\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Postingan saya isi type longtext, mengingat postingan bisa banyak dan di include kan simbol-simbol"
+					},
+					"response": []
+				},
+				{
+					"name": "Homepage",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{dot_indonesia}}/api/homepage",
+						"description": "End point ini, berfungsi untuk melihat semua postingan yang ada di aplikasi ini, layaknya X.\n\n\\*tetapi belum di improve dari data yang terbaru\n\n- User yang boleh masuk harus memiliki role 'user | admin'\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit-Postingan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "judulPost",
+									"value": "Edited postingan pertama",
+									"type": "text"
+								},
+								{
+									"key": "postingan",
+									"value": "&emsp; Perintah query pada SQL mendukung pengurutan data berdasarkan kolom atau fields tertentu dengan tipe data yang dimiliki pada suatu tabel, pengurutan dapat dilakukan secara naik atau *ascending* maupun secara menurun atau *descending*, untuk melakukan pengurutan dapat menggunakan perintah sebagai berikut:\n~~~SQL:Perintah Mengurutkan Data\nSELECT * FROM Nama_Tabel ORDER BY Nama_Kolom;\n~~~\nPerintah di atas secara default mengurutkan data secara naik, dari nilai terkecil hingga terbesar atau dari huruf a hingga z namun, jika diperlukan dapat diurutkan secara menurut dengan menggunakan perintah sebagai berikut:\n~~~SQL:Perintah Mengurutkan Data Menurun\nSELECT * FROM Nama_Tabel ORDER BY Nama_Kolom DESC;\n~~~\nDengan menambahkan data kunci ``DESC`` setalah nama kolom, perintah yang dijalankan akan mengembalikan data dengan urutan secara menurun, untuk lebih mudah memahami pengurutan data diberikan contoh sebagai berikut:\n~~~SQL:Contoh\nSELECT * FROM Karyawan WHERE Nama_Depan = 'John';\n+---+-----------+---------------+-----------+--------+\n|Id\t|Nama_Depan\t|Nama_Belakang\t|Jabatan    |Gaji\t   |\n+---+-----------+---------------+-----------+--------+\n|4  |'Dandy'\t  |'Waluyo'\t\t    |HRD\t\t    |4500000 |\n|3  |'Cita'\t    |'Putri'\t\t    |CFO\t\t    |5000000 |\n|1  |'Andi'\t\t  |'Purwatan'\t\t  |CTO\t\t    |6000000 |\n|5  |'Emil'\t\t  |'Danitama'\t\t  |Co-CEO\t\t  |7000000 |\n|2  |'Budi'\t\t  |'Hartanto'\t\t  |CEO \t\t    |7500000 |\n+---+-----------+---------------+-----------+--------+\n5 rows in set (0.001 sec) \n~~~\nContoh di atas adalah perintah mengurutkan data pada tabel ``Karyawan`` berdasarkan kolom ``Gaji`` yang secara *default* mengurutkan baris mulai dari gaji terendah hingga gaji tertinggi .",
+									"type": "text"
+								},
+								{
+									"key": "pembuat_post",
+									"value": "2",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "{{dot_indonesia}}/api/edit-postingan/1",
+						"description": "End point ini digunakan untuk mengedit postingan, terdapat validasi untuk siapa yang boleh mengedit postingan tersebut dilihat dari parameter user->id yang login sama atau tidak dengan user->id yang terdapat dalam postingan tersebut.\n\n- User yang boleh masuk harus memiliki role 'user | admin'\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n- Menggunakan parameter id post untuk dapat mengedit postingan tersebut"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Postingan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{dot_indonesia}}/api/hapus-postingan/2",
+						"description": "End point ini digunakan untuk menghapus postingan, terdapat validasi untuk siapa yang boleh mengedit postingan tersebut dilihat dari parameter user->id yang login sama atau tidak dengan user->id yang terdapat dalam postingan tersebut.\n\n- User yang boleh masuk harus memiliki role 'user | admin'\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n- Menggunakan parameter id post untuk dapat menghapus postingan tersebut"
+					},
+					"response": []
+				},
+				{
+					"name": "Post-Komen",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "post_id",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "pembuat_komen",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "isi_komen",
+									"value": "ini komen ku alwayswrong2",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{dot_indonesia}}/api/buat-komen",
+						"description": "End point ini, berfungsi untuk membuat komen dari postingan dari user yang sudah login di aplikasi ini, dan ini menggunakan relasi One to Many yaitu 1 postingan memiliki banyak komen\n\n- User yang boleh masuk memiliki role 'user | admin' saja\n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Komen saya isi longtext juga sebab komen bisa panjang dan disisipi simbol juga seperti postingan"
+					},
+					"response": []
+				},
+				{
+					"name": "Lihat Postingan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{dot_indonesia}}/api/postingan/1",
+						"description": "End point ini, berfungsi untuk melihat detail postingan yang ada di aplikasi ini.\n\n- User yang boleh masuk harus memiliki role 'user | admin'\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Menggunakan parameter id post\n    \n- Bisa menampilkan isi komen yang ada dalam post tersebut yang dipilih"
+					},
+					"response": []
+				},
+				{
+					"name": "Edit-Komentar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "isi_komen",
+									"value": "ini komen ku alwayswrong (alwaystrue)",
+									"type": "text"
+								}
+							]
+						},
+						"url": "{{dot_indonesia}}/api/edit-komentar/1",
+						"description": "End point ini digunakan untuk mengedit komen, terdapat validasi untuk siapa yang boleh mengedit komen tersebut dilihat dari parameter user->id yang login sama atau tidak dengan user->id yang terdapat dalam postingan tersebut.\n\n- User yang boleh masuk harus memiliki role 'user | admin'\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Menggunakan parameter id komen untuk dapat mengedit komen tersebut"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Komentar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{dot_indonesia}}/api/hapus-komentar/2",
+						"description": "End point ini digunakan untuk menghapus postingan, terdapat validasi untuk siapa yang boleh mengedit postingan tersebut dilihat dari parameter user->id yang login sama atau tidak dengan user->id yang terdapat dalam postingan tersebut.\n\n- User yang boleh masuk harus memiliki role 'user | admin'\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu\n    \n- Menggunakan parameter id post untuk dapat menghapus postingan tersebut"
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "your-application-key"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{dot_indonesia}}/api/search?keyword=Admoon",
+							"host": [
+								"{{dot_indonesia}}"
+							],
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "Admoon"
+								}
+							]
+						},
+						"description": "End point ini berfungsi untuk mencari / search dari kata kunci atau yang saya buat ialah keyword dari postingan atau judul postingan\n\n- User yang boleh masuk harus memiliki role 'user | admin'\n    \n- Menggunakan Authorization Bearer Token yang didapat dari proses login terlebih dahulu"
+					},
+					"response": []
+				}
+			],
+			"description": "Saya menamai folder T, karena di awal saya terinspirasi dengan platform X, kebetulan nama saya depannya T.  \n  \nEnd point disini bisa diakses oleh role 'user | admin' asalkan sudah login, yang kemudian token hasil login akan dipakai untuk authorization bearer token"
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "tedyyf",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "teddyf@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": "{{dot_indonesia}}/api/register",
+				"description": "End point ini digunakan untuk proses registrasi jika user belum mempunyai akun"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "admin@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": "{{dot_indonesia}}/api/login",
+				"description": "End point ini berfungsi untuk melakukan proses login agar mendapatkan token untuk dipakai di bearer token"
+			},
+			"response": []
+		}
+	]
+}
