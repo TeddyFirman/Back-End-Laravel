@@ -5,6 +5,7 @@
 Dikembangkan oleh :
 
 - Github : <a href="https://github.com/TeddyFirman"> Teddy Firman Winarto </a>
+- Inspiring: https://roadmap.sh/projects/todo-list-api
 
 ## Fitur 
 
